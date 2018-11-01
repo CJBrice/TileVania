@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
 
     // State
     bool isAlive = true;
-    bool IsTouchingLayers(LayerMask.GetMask("Ground"))
 
     // Cached component references
     Rigidbody2D myRigidBody;
