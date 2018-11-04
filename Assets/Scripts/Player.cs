@@ -20,14 +20,17 @@ public class Player : MonoBehaviour
     // Cached component references
     Rigidbody2D myRigidBody;
     Animator myAnimator;
-    Collider2D myCollider2D;
+    CapsuleCollider2D myBody;
+    BoxCollider2D myLegs;
 
     // Messages then methods
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
-        myCollider2D = GetComponent<Collider2D>();
+        myBody = GetComponent<CapsuleCollider2D>();
+        myLegs = GetComponent<BoxCollider2D>();
+
         gravityScaleAtStart = myRigidBody.gravityScale;
     }
 
@@ -53,7 +56,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (!myCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
+        if (!myLegs.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
 
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
@@ -73,7 +76,7 @@ public class Player : MonoBehaviour
 
     private void ClimbLadder()
     {
-       if (!myCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")))
+       if (!myLegs.IsTouchingLayers(LayerMask.GetMask("Ladder")))
         {
             myAnimator.SetBool("Climbing", false);
             myRigidBody.gravityScale = gravityScaleAtStart;
