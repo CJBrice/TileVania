@@ -13,10 +13,11 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
     [SerializeField] Vector2 deathKick = new Vector2(250f, 250f);
+    
     float gravityScaleAtStart;
 
     // State
-    bool isAlive = true;
+    [SerializeField] bool isAlive = true;
 
     // Cached component references
     Rigidbody2D myRigidBody;
